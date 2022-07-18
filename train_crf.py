@@ -24,8 +24,8 @@ for index, row in train.iterrows():
         spec_label.append(el)
     label.append(spec_label)
     a += 1
-    # if a == 1000:
-    #     break
+    if a == 10:
+        break
 
 print("Raw")
 for el in raw:
@@ -176,8 +176,8 @@ for index, row in test.iterrows():
         spec_label.append(el)
     label.append(spec_label)
     a += 1
-    # if a == 100:
-    #     break
+    if a == 10:
+        break
 
 print("Raw")
 for el in raw:
@@ -252,7 +252,7 @@ mislabeled_entites = 0
 total_number_of_entities = 0
 import datetime
 
-a = datetime.datetime.now()
+start_time = datetime.datetime.now()
 for run_test, label_test, gdth in zip(raw, label, gdth_test):
     total += 1
     run_test_str = " ".join(run_test)
@@ -272,8 +272,8 @@ for run_test, label_test, gdth in zip(raw, label, gdth_test):
             else:
                 mislabeled_entites += 1
         print(f"-{ent.text}-", ent.start_char, ent.end_char, ent.label_)
-b = datetime.datetime.now()
-delta = b - a
+end_time = datetime.datetime.now()
+delta = end_time - start_time
 print(f"CRF time elapsed: ", int(delta.total_seconds() * 1000))
 
 print("Matches: ", match)
